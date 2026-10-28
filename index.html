@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CampusAccess – Carte & Événements du Campus</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="logo">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2C11.7 2 5 8.5 5 16.6 5 27 20 38 20 38s15-11 15-21.4C35 8.5 28.3 2 20 2z" fill="#2F806A"/><circle cx="20" cy="11" r="2.4" fill="#fff"/><path d="M19 15v7h6l2 6M19 18h6M17 22a5 5 0 1 0 6 7" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+    <b>CampusAccess</b>
+  </div>
+  <button class="nav-btn active" data-view="map"><span>🗺️</span> Carte & Itinéraire</button>
+  <button class="nav-btn" data-view="events"><span>📅</span> Événements <span class="badge" id="eventBadge">6</span></button>
+  <div class="lang">
+    <select id="lang" aria-label="Langue"><option>FR</option><option>EN</option><option>AR</option></select>
+  </div>
+</aside>
+
+<main>
+  <!-- SECTION 1 : CARTE & ITINÉRAIRE OPTIMISÉ -->
+  <section class="view active" id="view-map">
+    <div class="view-header">
+      <div>
+        <h1>Carte & Itinéraires du campus</h1>
+        <p class="sub">Localisez vos événements et visualisez l'itinéraire piéton optimisé et accessible en temps réel.</p>
+      </div>
+    </div>
+
+    <!-- Bannière d'itinéraire actif -->
+    <div id="routeBanner" class="route-banner" style="display:none;"></div>
+
+    <div class="layout">
+      <div class="map-column">
+        <div class="map-wrap" id="map"></div>
+
+        <div class="events-on-map">
+          <div class="section-title-row">
+            <h2>Événements sur le campus</h2>
+            <button class="link-btn" id="btnGoEvents">Voir tout l'agenda (6) ➔</button>
+          </div>
+          <div class="map-events-slider" id="mapEventsList"></div>
+        </div>
+      </div>
+
+      <!-- Panneau d'itinéraire optimisé & détails -->
+      <aside class="card route-panel" id="routePanel" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <!-- SECTION 2 : ÉVÉNEMENTS -->
+  <section class="view" id="view-events">
+    <div class="view-header">
+      <div>
+        <h1>Événements du campus</h1>
+        <p class="sub">Découvrez tous les événements à venir et lancez l'itinéraire optimisé pour vous y rendre directement.</p>
+      </div>
+    </div>
+
+    <div class="events-toolbar">
+      <div class="events-filters" id="eventFilterTabs">
+        <button class="filter-chip active" data-cat="all">Tous les événements</button>
+        <button class="filter-chip" data-cat="Conférence">Conférences</button>
+        <button class="filter-chip" data-cat="Atelier">Ateliers</button>
+        <button class="filter-chip" data-cat="Vie étudiante">Vie étudiante</button>
+        <button class="filter-chip" data-cat="Culture">Culture</button>
+      </div>
+      <input class="search" id="eventSearchInput" type="search" placeholder="Rechercher un événement, un amphi, un thème…" aria-label="Rechercher un événement">
+    </div>
+
+    <div class="events-grid" id="eventsGrid"></div>
+  </section>
+</main>
+
+<div id="toast" role="status"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
